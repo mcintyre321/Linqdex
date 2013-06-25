@@ -20,6 +20,17 @@ namespace Linqdex.Tests
             Assert.AreEqual(expected, actual);
         }
         [Test]
+        public void UpdateAnItemAndRetreiveIt() 
+        {
+            var observableCollection = new ObservableCollection<Person>();
+            var expected = new Person() { Name = "Arnold" };
+            observableCollection.Add(expected);
+            expected.Name = "Todd";
+            var actual = observableCollection.Query().Single(p => p.Name == "Todd");
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void CanRemoveAnItemAndNotRetreiveIt()
         {
             var observableCollection = new Linqdex<Person>();
@@ -29,5 +40,16 @@ namespace Linqdex.Tests
             var actual = observableCollection.Query().SingleOrDefault(p => p.Name == "Arnold");
             Assert.Null(actual);
         }
+        [Test]
+        public void CanUpdateAnItemAndNotRetreiveIt()
+        {
+            var observableCollection = new Linqdex<Person>();
+            var expected = new Person() { Name = "Arnold" };
+            observableCollection.Add(expected);
+            expected.Name = "Todd";
+            var actual = observableCollection.Query().SingleOrDefault(p => p.Name == "Arnold");
+            Assert.Null(actual);
+        }
+
     }
 }

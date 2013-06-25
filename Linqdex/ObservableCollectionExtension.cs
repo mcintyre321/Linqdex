@@ -10,12 +10,12 @@ namespace Linqdex
     public static class ObservableCollectionExtension
     {
         static readonly ConditionalWeakTable<object, object> IndexLookup = new ConditionalWeakTable<object, object>();
-        public static IQueryable<T> Query<T>(this ObservableCollection<T> col) where T : new()
+        public static IQueryable<T> Query<T>(this ObservableCollection<T> col) 
         {
             return col.Query<T, ObservableCollection<T>>();
         }
 
-        public static IQueryable<T> Query<T, TCollection>(this TCollection col) where TCollection : INotifyCollectionChanged, IEnumerable<T> where T : new()
+        public static IQueryable<T> Query<T, TCollection>(this TCollection col) where TCollection : INotifyCollectionChanged, IEnumerable<T> 
         {
             var index = (Linqdex<T>) IndexLookup.GetValue(col, key =>
             {

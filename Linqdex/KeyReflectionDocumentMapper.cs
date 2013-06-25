@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -11,12 +12,17 @@ namespace Linqdex
 {
     internal class KeyReflectionDocumentMapper<T> : ReflectionDocumentMapper<T>
     {
-        public KeyReflectionDocumentMapper(Version version) : base(version)
+        private readonly Func<string, T> _findObject;
+
+        public KeyReflectionDocumentMapper(Func<string, T> findObject, Version version) : base(version)
         {
+            _findObject = findObject;
         }
 
-        public KeyReflectionDocumentMapper(Version version, Analyzer externalAnalyzer) : base(version, externalAnalyzer)
+        public KeyReflectionDocumentMapper(Func<string, T> findObject, Version version, Analyzer externalAnalyzer)
+            : base(version, externalAnalyzer)
         {
+            _findObject = findObject;
         }
 
         public override void ToDocument(T source, global::Lucene.Net.Documents.Document target)
@@ -31,9 +37,14 @@ namespace Linqdex
 
         public override void ToObject(global::Lucene.Net.Documents.Document source, global::Lucene.Net.Linq.IQueryExecutionContext context, T target)
         {
-            var id = source.GetField("__key").StringValue;
-            target.Key(id);
+           
             base.ToObject(source, context, target);
+        }
+
+        public T Create(Document source)
+        {
+            var id = source.GetField("__key").StringValue;
+            return _findObject(id);
         }
     }
 }
