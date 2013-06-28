@@ -73,18 +73,22 @@ namespace Linqdex
                     if (_objectLookup.Remove(key))
                     {
                         session.Delete(item);
+                        var notify = item as INotifyPropertyChanged;
+                        if (notify != null)
+                        {
+                            notify.PropertyChanged -= notify_PropertyChanged;
+                        }
                     }    
                 }
                 session.Commit();
             }
         }
 
-        public IQueryable<T> Query(Expression<Func<T, bool>> @where = null)
+        public IQueryable<T> Query()
         {
             using (var s = _provider.OpenSession<T>(_documentMapper.Create, _documentMapper))
             {
                 var indexQ = s.Query();
-                if (@where != null) indexQ = indexQ.Where(where);
                 return indexQ;
             }
         }
