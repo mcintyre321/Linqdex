@@ -42,7 +42,7 @@
       <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="Lucene.Net.Linq">
-      <HintPath>..\..\Lucene.Net.Linq\source\Lucene.Net.Linq\bin\Debug\Lucene.Net.Linq.dll</HintPath>
+      <HintPath>..\manual packages\Lucene.Net.Linq\Lucene.Net.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq">
       <HintPath>..\packages\Remotion.Linq.1.13.183.0\lib\net35\Remotion.Linq.dll</HintPath>

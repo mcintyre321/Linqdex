@@ -11,7 +11,7 @@ namespace Linqdex.Tests
             var indexedList = new Linqdex<Person>();
             var expected = new Person() { Name = "Arnold" };
             indexedList.Add(expected);
-            var actual = indexedList.Query().Single(p => p.Name == "Arnold");
+            var actual = indexedList.ToIndexedQuery().Single(p => p.Name == "Arnold");
             Assert.AreEqual(expected, actual);
         }
         [Test]
@@ -21,7 +21,7 @@ namespace Linqdex.Tests
             var expected = new Person() { Name = "Arnold" };
             indexedList.Add(expected);
             indexedList.Remove(expected);
-            var actual = indexedList.Query().SingleOrDefault(p => p.Name == "Arnold");
+            var actual = indexedList.ToIndexedQuery().SingleOrDefault(p => p.Name == "Arnold");
             Assert.Null(actual);
         }
 
@@ -34,7 +34,7 @@ namespace Linqdex.Tests
 
             expected.Name = "Marvin";
 
-            var actual = indexedList.Query().SingleOrDefault(p => p.Name == "Marvin");
+            var actual = indexedList.ToIndexedQuery().SingleOrDefault(p => p.Name == "Marvin");
             Assert.NotNull(actual);
         }
         

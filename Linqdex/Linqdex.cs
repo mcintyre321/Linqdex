@@ -84,7 +84,7 @@ namespace Linqdex
             }
         }
 
-        public IQueryable<T> Query()
+        public IQueryable<T> ToIndexedQuery()
         {
             using (var s = _provider.OpenSession<T>(_documentMapper.Create, _documentMapper))
             {

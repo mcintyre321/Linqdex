@@ -19,7 +19,7 @@ namespace Linqdex.Tests
             var item = new TypeWithADateTime() { Now = DateTime.Now };
             var index = new Linqdex<TypeWithADateTime>();
             index.Add(item);
-            Assert.AreEqual(item, index.Query().Where(t => t.Now > DateTime.Today).ToArray().Single());
+            Assert.AreEqual(item, index.ToIndexedQuery().Where(t => t.Now > DateTime.Today).ToArray().Single());
         }
         public class TypeWithADateTimeOffset
         {
@@ -31,7 +31,7 @@ namespace Linqdex.Tests
             var item = new TypeWithADateTimeOffset() { Now = DateTimeOffset.Now };
             var index = new Linqdex<TypeWithADateTimeOffset>();
             index.Add(item);
-            Assert.AreEqual(item, index.Query().Where(t => t.Now > DateTimeOffset.Now.Date).ToArray().Single());
+            Assert.AreEqual(item, index.ToIndexedQuery().Where(t => t.Now > DateTimeOffset.Now.Date).ToArray().Single());
         }
 
         public class TypeWithANullableDateTimeOffset
@@ -49,9 +49,9 @@ namespace Linqdex.Tests
             var index = new Linqdex<TypeWithANullableDateTimeOffset>();
             index.Add(item);
             index.Add(item2);
-            Assert.AreEqual(item, index.Query().Where(t => t.Now == null).ToArray().Single());
+            Assert.AreEqual(item, index.ToIndexedQuery().Where(t => t.Now == null).ToArray().Single());
             
-            Assert.AreEqual(item2, index.Query().Where(t => t.Now == dateTimeOffset).ToArray().Single());
+            Assert.AreEqual(item2, index.ToIndexedQuery().Where(t => t.Now == dateTimeOffset).ToArray().Single());
         }
 
         public class TypeWithAString
@@ -68,9 +68,9 @@ namespace Linqdex.Tests
             var index = new Linqdex<TypeWithAString>();
             index.Add(item);
             index.Add(item2);
-            Assert.AreEqual(item, index.Query().Where(t => t.String == null).ToArray().Single());
+            Assert.AreEqual(item, index.ToIndexedQuery().Where(t => t.String == null).ToArray().Single());
 
-            Assert.AreEqual(item2, index.Query().Where(t => t.String == "asdf").ToArray().Single());
+            Assert.AreEqual(item2, index.ToIndexedQuery().Where(t => t.String == "asdf").ToArray().Single());
         }
 
     }

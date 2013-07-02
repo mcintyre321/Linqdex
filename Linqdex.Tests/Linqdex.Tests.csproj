@@ -43,9 +43,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Lucene.Net.Linq, Version=3.1.46.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Lucene.Net.Linq\source\Lucene.Net.Linq\bin\Debug\Lucene.Net.Linq.dll</HintPath>
+    <Reference Include="Lucene.Net.Linq">
+      <HintPath>..\manual packages\Lucene.Net.Linq\Lucene.Net.Linq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>

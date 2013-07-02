@@ -16,7 +16,7 @@ namespace Linqdex.Tests
             var observableCollection = new ObservableCollection<Person>();
             var expected = new Person() { Name = "Arnold" };
             observableCollection.Add(expected);
-            var actual = observableCollection.Query().Single(p => p.Name == "Arnold");
+            var actual = observableCollection.ToIndexedQueryable().Single(p => p.Name == "Arnold");
             Assert.AreEqual(expected, actual);
         }
         [Test]
@@ -26,7 +26,7 @@ namespace Linqdex.Tests
             var expected = new Person() { Name = "Arnold" };
             observableCollection.Add(expected);
             expected.Name = "Todd";
-            var actual = observableCollection.Query().Single(p => p.Name == "Todd");
+            var actual = observableCollection.ToIndexedQueryable().Single(p => p.Name == "Todd");
             Assert.AreEqual(expected, actual);
         }
 
@@ -37,7 +37,7 @@ namespace Linqdex.Tests
             var expected = new Person() { Name = "Arnold" };
             observableCollection.Add(expected);
             observableCollection.Remove(expected);
-            var actual = observableCollection.Query().SingleOrDefault(p => p.Name == "Arnold");
+            var actual = observableCollection.ToIndexedQuery().SingleOrDefault(p => p.Name == "Arnold");
             Assert.Null(actual);
         }
         [Test]
@@ -47,7 +47,7 @@ namespace Linqdex.Tests
             var expected = new Person() { Name = "Arnold" };
             observableCollection.Add(expected);
             expected.Name = "Todd";
-            var actual = observableCollection.Query().SingleOrDefault(p => p.Name == "Arnold");
+            var actual = observableCollection.ToIndexedQuery().SingleOrDefault(p => p.Name == "Arnold");
             Assert.Null(actual);
         }
 
