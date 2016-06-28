@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Linqdex;
 using Linqdex.Tests.Annotations;
-using Lucene.Net.Linq.Mapping;
 
 namespace Linqdex.Tests
 {

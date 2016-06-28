@@ -13,6 +13,6 @@ namespace Linqdex
         internal static string Key(this object obj, string key)
         {
             return KeyTable.GetValue(obj, o => key);
-        }
+        } 
     }
 }

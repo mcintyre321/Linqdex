@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Lucene.Net.Index;
 using Lucene.Net.Linq.Mapping;
 using Lucene.Net.Search;
@@ -6,10 +8,10 @@ namespace Linqdex
 {
     internal class Key : IDocumentKey
     {
-        private readonly string _key;
-        public Key(string key)
+        public string Id { get; }
+        public Key(string id)
         {
-            _key = key;
+            Id = id;
         }
 
 
@@ -18,7 +20,7 @@ namespace Linqdex
             var otherPie = other as Key;
             if (otherPie != null)
             {
-                return otherPie._key == this._key;
+                return otherPie.Id == this.Id;
             }
             return false;
         }
@@ -26,9 +28,13 @@ namespace Linqdex
 
         public Query ToQuery()
         {
-            return new TermQuery(new Term("__key", this._key));
+            return new TermQuery(new Term("__key", this.Id));
         }
 
-        public bool Empty { get { return false; } }
+        public bool Empty => false;
+
+        public IEnumerable<string> Properties => Enumerable.Empty<string>();
+
+        public object this[string property] => null;
     }
 }

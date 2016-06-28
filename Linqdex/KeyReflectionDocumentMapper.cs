@@ -35,16 +35,20 @@ namespace Linqdex
             return new Key(source.Key());
         }
 
+        public override IDocumentKey ToKey(Document document)
+        {
+            return new Key(document.GetField("__key").StringValue);
+        }
         public override void ToObject(global::Lucene.Net.Documents.Document source, global::Lucene.Net.Linq.IQueryExecutionContext context, T target)
         {
-           
             base.ToObject(source, context, target);
         }
 
-        public T Create(Document source)
+        public T Create(IDocumentKey key)
         {
-            var id = source.GetField("__key").StringValue;
-            return _findObject(id);
+            var id = ((Key) key).Id;
+            var source = _findObject(id);
+            return source;
         }
     }
 }
